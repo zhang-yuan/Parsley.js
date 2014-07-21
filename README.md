@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/guillaumepotier/Parsley.js.svg?branch=master)](https://travis-ci.org/guillaumepotier/Parsley.js)
 
-Javascript form validation, without actually writing a single line of javascript!
+JavaScript form validation, without actually writing a single line of JavaScript!
 
 ## Version
 
-2.0.2
+2.0.3
 
 ## Doc
 
