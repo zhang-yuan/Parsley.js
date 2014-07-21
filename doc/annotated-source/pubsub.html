@@ -99,7 +99,7 @@
             <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/pubsub'</span>, [
   <span class="hljs-string">'parsley/field'</span>,
   <span class="hljs-string">'parsley/form'</span>
-], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyField, ParsleyForm)</span> {</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyField, ParsleyForm)</span> </span>{
   <span class="hljs-keyword">var</span>
     o = $({}),
     subscribed = {};</pre></div></div>
@@ -118,7 +118,7 @@ $.listen(name, context, callback);</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  $.listen = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> {</span>
+            <div class="content"><div class='highlight'><pre>  $.listen = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> subscribed[name])
       subscribed[name] = [];
 
@@ -131,7 +131,7 @@ $.listen(name, context, callback);</p>
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Wrong parameters'</span>);
   };
 
-  $.listenTo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance, name, fn)</span> {</span>
+  $.listenTo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance, name, fn)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> subscribed[name])
       subscribed[name] = [];
 
@@ -144,7 +144,7 @@ $.listen(name, context, callback);</p>
     subscribed[name].push({ instance: instance, fn: fn });
   };
 
-  $.unsubscribe = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn)</span> {</span>
+  $.unsubscribe = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> subscribed[name])
       <span class="hljs-keyword">return</span>;
 
@@ -156,7 +156,7 @@ $.listen(name, context, callback);</p>
         <span class="hljs-keyword">return</span> subscribed[name].splice(i, <span class="hljs-number">1</span>);
   };
 
-  $.unsubscribeTo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance, name)</span> {</span>
+  $.unsubscribeTo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(instance, name)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> subscribed[name])
       <span class="hljs-keyword">return</span>;
 
@@ -168,7 +168,7 @@ $.listen(name, context, callback);</p>
         <span class="hljs-keyword">return</span> subscribed[name].splice(i, <span class="hljs-number">1</span>);
   };
 
-  $.unsubscribeAll = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> {</span>
+  $.unsubscribeAll = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> subscribed[name])
       <span class="hljs-keyword">return</span>;
 
@@ -189,7 +189,7 @@ $.emit(name, instance [, arguments..]);</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  $.emit = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, instance)</span> {</span>
+            <div class="content"><div class='highlight'><pre>  $.emit = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, instance)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> subscribed[name])
       <span class="hljs-keyword">return</span>;</pre></div></div>
             
@@ -282,7 +282,7 @@ $.emit(name, instance [, arguments..]);</p>
     }
   };
 
-  $.subscribed = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span> <span class="hljs-keyword">return</span> subscribed; };
+  $.subscribed = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> subscribed; };
 });</pre></div></div>
             
         </li>

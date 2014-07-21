@@ -96,7 +96,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/utils'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/utils'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">return</span> {</pre></div></div>
             
         </li>
@@ -114,7 +114,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    attr: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($element, namespace, checkAttr)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    attr: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($element, namespace, checkAttr)</span> </span>{
       <span class="hljs-keyword">var</span>
         attribute,
         obj = {},
@@ -138,7 +138,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
       <span class="hljs-keyword">return</span> <span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> checkAttr ? obj : <span class="hljs-literal">false</span>;
     },
 
-    setAttr: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($element, namespace, attr, value)</span> {</span>
+    setAttr: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($element, namespace, attr, value)</span> </span>{
       $element[<span class="hljs-number">0</span>].setAttribute(<span class="hljs-keyword">this</span>.dasherize(namespace + attr), <span class="hljs-built_in">String</span>(value));
     },</pre></div></div>
             
@@ -155,7 +155,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    get: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj, path)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    get: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj, path)</span> </span>{
       <span class="hljs-keyword">var</span>
         i = <span class="hljs-number">0</span>,
         paths = (path || <span class="hljs-string">''</span>).split(<span class="hljs-string">'.'</span>);
@@ -169,7 +169,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
       <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
     },
 
-    hash: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(length)</span> {</span>
+    hash: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(length)</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(<span class="hljs-built_in">Math</span>.random()).substring(<span class="hljs-number">2</span>, length ? length + <span class="hljs-number">2</span> : <span class="hljs-number">9</span>);
     },
 
@@ -188,7 +188,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    isArray: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(mixed)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    isArray: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(mixed)</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.prototype.toString.call(mixed) === <span class="hljs-string">'[object Array]'</span>;
     },</pre></div></div>
             
@@ -205,7 +205,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    isObject: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(mixed)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    isObject: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(mixed)</span> </span>{
       <span class="hljs-keyword">return</span> mixed === <span class="hljs-built_in">Object</span>(mixed);
     },</pre></div></div>
             
@@ -222,7 +222,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    deserializeValue: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    deserializeValue: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
       <span class="hljs-keyword">var</span> num;
 
       <span class="hljs-keyword">try</span> {
@@ -250,8 +250,8 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    camelize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str)</span> {</span>
-      <span class="hljs-keyword">return</span> str.replace(<span class="hljs-regexp">/-+(.)?/g</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(match, chr)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    camelize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str)</span> </span>{
+      <span class="hljs-keyword">return</span> str.replace(<span class="hljs-regexp">/-+(.)?/g</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(match, chr)</span> </span>{
         <span class="hljs-keyword">return</span> chr ? chr.toUpperCase() : <span class="hljs-string">''</span>;
       });
     },</pre></div></div>
@@ -269,7 +269,7 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    dasherize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    dasherize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str)</span> </span>{
       <span class="hljs-keyword">return</span> str.replace(<span class="hljs-regexp">/::/g</span>, <span class="hljs-string">'/'</span>)
         .replace(<span class="hljs-regexp">/([A-Z]+)([A-Z][a-z])/g</span>, <span class="hljs-string">'$1_$2'</span>)
         .replace(<span class="hljs-regexp">/([a-z\d])([A-Z])/g</span>, <span class="hljs-string">'$1_$2'</span>)
@@ -291,9 +291,9 @@ if attr is given, returns bool if attr present in DOM or not</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    msieversion: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <div class="content"><div class='highlight'><pre>    msieversion: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       <span class="hljs-keyword">var</span>
-        ua = window.navigator.userAgent,
+        ua = <span class="hljs-built_in">window</span>.navigator.userAgent,
         msie = ua.indexOf(<span class="hljs-string">'MSIE '</span>);
 
       <span class="hljs-keyword">if</span> (msie &gt; <span class="hljs-number">0</span> || !!navigator.userAgent.match(<span class="hljs-regexp">/Trident.*rv\:11\./</span>))

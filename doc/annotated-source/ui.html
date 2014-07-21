@@ -98,13 +98,13 @@
             
             <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/ui'</span>, [
   <span class="hljs-string">'parsley/utils'</span>
-], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyUtils)</span> {</span>
-  <span class="hljs-keyword">var</span> ParsleyUI = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyUtils)</span> </span>{
+  <span class="hljs-keyword">var</span> ParsleyUI = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{
     <span class="hljs-keyword">this</span>.__class__ = <span class="hljs-string">'ParsleyUI'</span>;
   };
 
   ParsleyUI.prototype = {
-    listen: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+    listen: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       $.listen(<span class="hljs-string">'parsley:form:init'</span>, <span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>.setupForm);
       $.listen(<span class="hljs-string">'parsley:field:init'</span>, <span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>.setupField);
 
@@ -119,7 +119,7 @@
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },
 
-    reflow: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span></pre></div></div>
+    reflow: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -257,7 +257,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    getErrorsMessages: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    getErrorsMessages: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -283,7 +283,7 @@
       <span class="hljs-keyword">return</span> messages;
     },
 
-    manageStatusClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    manageStatusClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span> === fieldInstance.validationResult)
         <span class="hljs-keyword">this</span>._successClass(fieldInstance);
       <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fieldInstance.validationResult.length &gt; <span class="hljs-number">0</span>)
@@ -292,7 +292,7 @@
         <span class="hljs-keyword">this</span>._resetClass(fieldInstance);
     },
 
-    manageErrorsMessages: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, diff)</span> {</span>
+    manageErrorsMessages: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, diff)</span> </span>{
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> fieldInstance.options.errorsMessagesDisabled)
         <span class="hljs-keyword">return</span>;</pre></div></div>
             
@@ -365,7 +365,7 @@ but a little bit complex for above internal usage, with forced undefined paramet
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    addError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, message, assert, doNotUpdateClass)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    addError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, message, assert, doNotUpdateClass)</span> </span>{
       fieldInstance._ui.$errorsWrapper
         .addClass(<span class="hljs-string">'filled'</span>)
         .append($(fieldInstance.options.errorTemplate)
@@ -389,7 +389,7 @@ but a little bit complex for above internal usage, with forced undefined paramet
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    updateError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, message, assert, doNotUpdateClass)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    updateError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, message, assert, doNotUpdateClass)</span> </span>{
       fieldInstance._ui.$errorsWrapper
         .addClass(<span class="hljs-string">'filled'</span>)
         .find(<span class="hljs-string">'.parsley-'</span> + name)
@@ -412,7 +412,7 @@ but a little bit complex for above internal usage, with forced undefined paramet
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    removeError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, doNotUpdateClass)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    removeError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, doNotUpdateClass)</span> </span>{
       fieldInstance._ui.$errorsWrapper
         .removeClass(<span class="hljs-string">'filled'</span>)
         .find(<span class="hljs-string">'.parsley-'</span> + name)
@@ -436,7 +436,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         <span class="hljs-keyword">this</span>.manageStatusClass(fieldInstance);
     },
 
-    focus: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(formInstance)</span> {</span>
+    focus: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(formInstance)</span> </span>{
       <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span> === formInstance.validationResult || <span class="hljs-string">'none'</span> === formInstance.options.focus)
         <span class="hljs-keyword">return</span> formInstance._focusedField = <span class="hljs-literal">null</span>;
 
@@ -458,16 +458,16 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
       <span class="hljs-keyword">return</span> formInstance._focusedField.focus();
     },
 
-    _getErrorMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, constraint)</span> {</span>
+    _getErrorMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, constraint)</span> </span>{
       <span class="hljs-keyword">var</span> customConstraintErrorMessage = constraint.name + <span class="hljs-string">'Message'</span>;
 
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> fieldInstance.options[customConstraintErrorMessage])
-        <span class="hljs-keyword">return</span> window.ParsleyValidator.formatMessage(fieldInstance.options[customConstraintErrorMessage], constraint.requirements);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.ParsleyValidator.formatMessage(fieldInstance.options[customConstraintErrorMessage], constraint.requirements);
 
-      <span class="hljs-keyword">return</span> window.ParsleyValidator.getErrorMessage(constraint);
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.ParsleyValidator.getErrorMessage(constraint);
     },
 
-    _diff: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(newResult, oldResult, deep)</span> {</span>
+    _diff: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(newResult, oldResult, deep)</span> </span>{
       <span class="hljs-keyword">var</span>
         added = [],
         kept = [];
@@ -494,7 +494,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
       };
     },
 
-    setupForm: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(formInstance)</span> {</span>
+    setupForm: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(formInstance)</span> </span>{
       formInstance.$element.on(<span class="hljs-string">'submit.Parsley'</span>, <span class="hljs-literal">false</span>, $.proxy(formInstance.onSubmitValidate, formInstance));</pre></div></div>
             
         </li>
@@ -516,7 +516,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
       formInstance.$element.attr(<span class="hljs-string">'novalidate'</span>, <span class="hljs-string">''</span>);
     },
 
-    setupField: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    setupField: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       <span class="hljs-keyword">var</span> _ui = { active: <span class="hljs-literal">false</span> };</pre></div></div>
             
         </li>
@@ -649,7 +649,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    _manageClassHandler: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    _manageClassHandler: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -730,14 +730,14 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">return</span> fieldInstance.$element.parent();
     },
 
-    _insertErrorWrapper: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    _insertErrorWrapper: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       <span class="hljs-keyword">var</span> $errorsContainer;
 
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> fieldInstance.options.errorsContainer) {
         <span class="hljs-keyword">if</span> ($(fieldInstance.options.errorsContainer).length)
           <span class="hljs-keyword">return</span> $(fieldInstance.options.errorsContainer).append(fieldInstance._ui.$errorsWrapper);
-        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (window.console &amp;&amp; window.console.warn)
-          window.console.warn(<span class="hljs-string">'The errors container `'</span> + fieldInstance.options.errorsContainer + <span class="hljs-string">'` does not exist in DOM'</span>);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.console &amp;&amp; <span class="hljs-built_in">window</span>.console.warn)
+          <span class="hljs-built_in">window</span>.console.warn(<span class="hljs-string">'The errors container `'</span> + fieldInstance.options.errorsContainer + <span class="hljs-string">'` does not exist in DOM'</span>);
       }
       <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">'function'</span> === <span class="hljs-keyword">typeof</span> fieldInstance.options.errorsContainer)
         $errorsContainer = fieldInstance.options.errorsContainer(fieldInstance);
@@ -748,7 +748,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
       <span class="hljs-keyword">return</span> <span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> fieldInstance.options.multiple ? fieldInstance.$element.after(fieldInstance._ui.$errorsWrapper) : fieldInstance.$element.parent().after(fieldInstance._ui.$errorsWrapper);
     },
 
-    actualizeTriggers: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    actualizeTriggers: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;</pre></div></div>
             
         </li>
@@ -765,7 +765,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (fieldInstance.options.multiple)
-        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           $(<span class="hljs-keyword">this</span>).off(<span class="hljs-string">'.Parsley'</span>);
         });
       <span class="hljs-keyword">else</span>
@@ -806,7 +806,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (fieldInstance.options.multiple)
-        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           $(<span class="hljs-keyword">this</span>).on(
             triggers.split(<span class="hljs-string">' '</span>).join(<span class="hljs-string">'.Parsley '</span>) + <span class="hljs-string">'.Parsley'</span>,
             <span class="hljs-literal">false</span>,
@@ -833,7 +833,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    eventValidate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    eventValidate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -858,7 +858,7 @@ about success or failure have been displayed, always validate with this trigger 
       <span class="hljs-keyword">this</span>.validate();
     },
 
-    manageFailingFieldTrigger: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    manageFailingFieldTrigger: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       fieldInstance._ui.failedOnce = <span class="hljs-literal">true</span>;</pre></div></div>
             
         </li>
@@ -875,7 +875,7 @@ about success or failure have been displayed, always validate with this trigger 
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (fieldInstance.options.multiple)
-        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">'change'</span>, <span class="hljs-string">'i'</span>).test($(<span class="hljs-keyword">this</span>).parsley().options.trigger || <span class="hljs-string">''</span>))
             <span class="hljs-keyword">return</span> $(<span class="hljs-keyword">this</span>).on(<span class="hljs-string">'change.ParsleyFailedOnce'</span>, <span class="hljs-literal">false</span>, $.proxy(fieldInstance.validate, fieldInstance));
         });</pre></div></div>
@@ -914,7 +914,7 @@ about success or failure have been displayed, always validate with this trigger 
         <span class="hljs-keyword">return</span> fieldInstance.$element.on(<span class="hljs-string">'keyup.ParsleyFailedOnce'</span>, <span class="hljs-literal">false</span>, $.proxy(fieldInstance.validate, fieldInstance));
     },
 
-    reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parsleyInstance)</span> {</span></pre></div></div>
+    reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parsleyInstance)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -964,7 +964,7 @@ about success or failure have been displayed, always validate with this trigger 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      parsleyInstance._ui.$errorsWrapper.children().each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+            <div class="content"><div class='highlight'><pre>      parsleyInstance._ui.$errorsWrapper.children().each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
         $(<span class="hljs-keyword">this</span>).remove();
       });</pre></div></div>
             
@@ -1001,7 +1001,7 @@ about success or failure have been displayed, always validate with this trigger 
       parsleyInstance._ui.validationInformationVisible = <span class="hljs-literal">false</span>;
     },
 
-    destroy: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parsleyInstance)</span> {</span>
+    destroy: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parsleyInstance)</span> </span>{
       <span class="hljs-keyword">this</span>.reset(parsleyInstance);
 
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'ParsleyForm'</span> === parsleyInstance.__class__)
@@ -1013,15 +1013,15 @@ about success or failure have been displayed, always validate with this trigger 
       <span class="hljs-keyword">delete</span> parsleyInstance._ui;
     },
 
-    _successClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    _successClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       fieldInstance._ui.validationInformationVisible = <span class="hljs-literal">true</span>;
       fieldInstance._ui.$errorClassHandler.removeClass(fieldInstance.options.errorClass).addClass(fieldInstance.options.successClass);
     },
-    _errorClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    _errorClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       fieldInstance._ui.validationInformationVisible = <span class="hljs-literal">true</span>;
       fieldInstance._ui.$errorClassHandler.removeClass(fieldInstance.options.successClass).addClass(fieldInstance.options.errorClass);
     },
-    _resetClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> {</span>
+    _resetClass: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
       fieldInstance._ui.$errorClassHandler.removeClass(fieldInstance.options.successClass).removeClass(fieldInstance.options.errorClass);
     }
   };

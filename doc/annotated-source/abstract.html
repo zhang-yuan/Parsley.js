@@ -97,13 +97,13 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/abstract'</span>, [
-], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
-  <span class="hljs-keyword">var</span> ParsleyAbstract = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>};
+], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">var</span> ParsleyAbstract = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{};
 
   ParsleyAbstract.prototype = {
     asyncSupport: <span class="hljs-literal">false</span>,
 
-    actualizeOptions: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+    actualizeOptions: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       <span class="hljs-keyword">this</span>.options = <span class="hljs-keyword">this</span>.OptionsFactory.get(<span class="hljs-keyword">this</span>);
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
@@ -122,8 +122,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    validateThroughValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value, constraints, priority)</span> {</span>
-      <span class="hljs-keyword">return</span> window.ParsleyValidator.validate.apply(window.ParsleyValidator, [value, constraints, priority]);
+            <div class="content"><div class='highlight'><pre>    validateThroughValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value, constraints, priority)</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.ParsleyValidator.validate.apply(<span class="hljs-built_in">window</span>.ParsleyValidator, [value, constraints, priority]);
     },</pre></div></div>
             
         </li>
@@ -141,7 +141,7 @@ To every field instance for this form</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    subscribe: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    subscribe: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn)</span> </span>{
       $.listenTo(<span class="hljs-keyword">this</span>, name.toLowerCase(), fn);
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
@@ -160,7 +160,7 @@ To every field instance for this form</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    unsubscribe: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    unsubscribe: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> </span>{
       $.unsubscribeTo(<span class="hljs-keyword">this</span>, name.toLowerCase());
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
@@ -179,7 +179,7 @@ To every field instance for this form</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -229,7 +229,7 @@ To every field instance for this form</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    destroy: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    destroy: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         

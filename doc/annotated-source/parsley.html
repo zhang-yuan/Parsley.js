@@ -93,7 +93,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <pre><code>Parsley.js 2.0.2
+              <pre><code>Parsley.js 2.0.3
 http:<span class="hljs-comment">//parsleyjs.org</span>
 (c) <span class="hljs-number">20012</span>-<span class="hljs-number">2014</span> Guillaume Potier, Wisembly
 Parsley may be freely distributed under the MIT license.
@@ -280,7 +280,7 @@ define([</pre></div></div>
             </div>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-string">'i18n/en'</span>
-], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyUtils, ParsleyDefaults, ParsleyAbstract, ParsleyValidator, ParsleyUI, ParsleyOptionsFactory, ParsleyForm, ParsleyField, ParsleyMultiple)</span> {</span></pre></div></div>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyUtils, ParsleyDefaults, ParsleyAbstract, ParsleyValidator, ParsleyUI, ParsleyOptionsFactory, ParsleyForm, ParsleyField, ParsleyMultiple)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -295,9 +295,9 @@ define([</pre></div></div>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Parsley = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(element, options, parsleyFormInstance)</span> {</span>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> Parsley = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(element, options, parsleyFormInstance)</span> </span>{
     <span class="hljs-keyword">this</span>.__class__ = <span class="hljs-string">'Parsley'</span>;
-    <span class="hljs-keyword">this</span>.__version__ = <span class="hljs-string">'2.0.2'</span>;
+    <span class="hljs-keyword">this</span>.__version__ = <span class="hljs-string">'2.0.3'</span>;
     <span class="hljs-keyword">this</span>.__id__ = ParsleyUtils.hash(<span class="hljs-number">4</span>);</pre></div></div>
             
         </li>
@@ -323,7 +323,7 @@ define([</pre></div></div>
   };
 
   Parsley.prototype = {
-    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($element, options, parsleyFormInstance)</span> {</span>
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($element, options, parsleyFormInstance)</span> </span>{
       <span class="hljs-keyword">if</span> (!$element.length)
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'You must bind Parsley on an existing element.'</span>);
 
@@ -377,7 +377,7 @@ define([</pre></div></div>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.OptionsFactory = <span class="hljs-keyword">new</span> ParsleyOptionsFactory(ParsleyDefaults, ParsleyUtils.get(window, <span class="hljs-string">'ParsleyConfig'</span>) || {}, options, <span class="hljs-keyword">this</span>.getNamespace(options));
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.OptionsFactory = <span class="hljs-keyword">new</span> ParsleyOptionsFactory(ParsleyDefaults, ParsleyUtils.get(<span class="hljs-built_in">window</span>, <span class="hljs-string">'ParsleyConfig'</span>) || {}, options, <span class="hljs-keyword">this</span>.getNamespace(options));
       <span class="hljs-keyword">this</span>.options = <span class="hljs-keyword">this</span>.OptionsFactory.get(<span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
@@ -415,7 +415,7 @@ define([</pre></div></div>
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },
 
-    isMultiple: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+    isMultiple: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.$element.is(<span class="hljs-string">'input[type=radio], input[type=checkbox]'</span>) &amp;&amp; <span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.options.multiple) || (<span class="hljs-keyword">this</span>.$element.is(<span class="hljs-string">'select'</span>) &amp;&amp; <span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'multiple'</span>));
     },</pre></div></div>
             
@@ -433,7 +433,7 @@ Maybe some refacto would be appreciated here..</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    handleMultiple: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parsleyFormInstance)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    handleMultiple: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(parsleyFormInstance)</span> </span>{
       <span class="hljs-keyword">var</span>
         that = <span class="hljs-keyword">this</span>,
         name,
@@ -505,8 +505,8 @@ Maybe some refacto would be appreciated here..</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> multiple) {
-        <span class="hljs-keyword">if</span> (window.console &amp;&amp; window.console.warn)
-          window.console.warn(<span class="hljs-string">'To be binded by Parsley, a radio, a checkbox and a multiple select input must have either a name or a multiple option.'</span>, <span class="hljs-keyword">this</span>.$element);
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.console &amp;&amp; <span class="hljs-built_in">window</span>.console.warn)
+          <span class="hljs-built_in">window</span>.console.warn(<span class="hljs-string">'To be binded by Parsley, a radio, a checkbox and a multiple select input must have either a name or a multiple option.'</span>, <span class="hljs-keyword">this</span>.$element);
 
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
       }</pre></div></div>
@@ -540,7 +540,7 @@ Maybe some refacto would be appreciated here..</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> name) {
-        $(<span class="hljs-string">'input[name="'</span> + name + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+        $(<span class="hljs-string">'input[name="'</span> + name + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           <span class="hljs-keyword">if</span> ($(<span class="hljs-keyword">this</span>).is(<span class="hljs-string">'input[type=radio], input[type=checkbox]'</span>))
             $(<span class="hljs-keyword">this</span>).attr(that.options.namespace + <span class="hljs-string">'multiple'</span>, multiple);
         });
@@ -606,7 +606,7 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    getNamespace: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    getNamespace: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -625,8 +625,8 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$element.data(<span class="hljs-string">'parsleyNamespace'</span>);
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> ParsleyUtils.get(options, <span class="hljs-string">'namespace'</span>))
         <span class="hljs-keyword">return</span> options.namespace;
-      <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> ParsleyUtils.get(window, <span class="hljs-string">'ParsleyConfig.namespace'</span>))
-        <span class="hljs-keyword">return</span> window.ParsleyConfig.namespace;
+      <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> ParsleyUtils.get(<span class="hljs-built_in">window</span>, <span class="hljs-string">'ParsleyConfig.namespace'</span>))
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.ParsleyConfig.namespace;
 
       <span class="hljs-keyword">return</span> ParsleyDefaults.namespace;
     },</pre></div></div>
@@ -644,7 +644,7 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    bind: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(type, parentParsleyFormInstance, multiple, doNotStore)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    bind: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(type, parentParsleyFormInstance, multiple, doNotStore)</span> </span>{
       <span class="hljs-keyword">var</span> parsleyInstance;
 
       <span class="hljs-keyword">switch</span> (type) {
@@ -652,14 +652,14 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
           parsleyInstance = $.extend(
             <span class="hljs-keyword">new</span> ParsleyForm(<span class="hljs-keyword">this</span>.$element, <span class="hljs-keyword">this</span>.OptionsFactory),
             <span class="hljs-keyword">new</span> ParsleyAbstract(),
-            window.ParsleyExtend
+            <span class="hljs-built_in">window</span>.ParsleyExtend
           )._bindFields();
           <span class="hljs-keyword">break</span>;
         <span class="hljs-keyword">case</span> <span class="hljs-string">'parsleyField'</span>:
           parsleyInstance = $.extend(
             <span class="hljs-keyword">new</span> ParsleyField(<span class="hljs-keyword">this</span>.$element, <span class="hljs-keyword">this</span>.OptionsFactory, parentParsleyFormInstance),
             <span class="hljs-keyword">new</span> ParsleyAbstract(),
-            window.ParsleyExtend
+            <span class="hljs-built_in">window</span>.ParsleyExtend
           );
           <span class="hljs-keyword">break</span>;
         <span class="hljs-keyword">case</span> <span class="hljs-string">'parsleyFieldMultiple'</span>:
@@ -667,7 +667,7 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
             <span class="hljs-keyword">new</span> ParsleyField(<span class="hljs-keyword">this</span>.$element, <span class="hljs-keyword">this</span>.OptionsFactory, parentParsleyFormInstance),
             <span class="hljs-keyword">new</span> ParsleyAbstract(),
             <span class="hljs-keyword">new</span> ParsleyMultiple(),
-            window.ParsleyExtend
+            <span class="hljs-built_in">window</span>.ParsleyExtend
           )._init(multiple);
           <span class="hljs-keyword">break</span>;
         <span class="hljs-keyword">default</span>:
@@ -747,11 +747,11 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  $.fn.parsley = $.fn.psly = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> {</span>
+            <div class="content"><div class='highlight'><pre>  $.fn.parsley = $.fn.psly = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.length &gt; <span class="hljs-number">1</span>) {
       <span class="hljs-keyword">var</span> instances = [];
 
-      <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+      <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
         instances.push($(<span class="hljs-keyword">this</span>).parsley(options));
       });
 
@@ -772,8 +772,8 @@ And would be useful later to access classic <code>ParsleyField</code> stuff whil
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (!$(<span class="hljs-keyword">this</span>).length) {
-      <span class="hljs-keyword">if</span> (window.console &amp;&amp; window.console.warn)
-        window.console.warn(<span class="hljs-string">'You must bind Parsley on an existing element.'</span>);
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.console &amp;&amp; <span class="hljs-built_in">window</span>.console.warn)
+        <span class="hljs-built_in">window</span>.console.warn(<span class="hljs-string">'You must bind Parsley on an existing element.'</span>);
 
       <span class="hljs-keyword">return</span>;
     }
@@ -796,8 +796,8 @@ Could be overriden by defining a <code>window.ParsleyConfig.ParsleyUI</code> app
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  window.ParsleyUI = <span class="hljs-string">'function'</span> === <span class="hljs-keyword">typeof</span> ParsleyUtils.get(window, <span class="hljs-string">'ParsleyConfig.ParsleyUI'</span>) ?
-    <span class="hljs-keyword">new</span> window.ParsleyConfig.ParsleyUI().listen() : <span class="hljs-keyword">new</span> ParsleyUI().listen();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">window</span>.ParsleyUI = <span class="hljs-string">'function'</span> === <span class="hljs-keyword">typeof</span> ParsleyUtils.get(<span class="hljs-built_in">window</span>, <span class="hljs-string">'ParsleyConfig.ParsleyUI'</span>) ?
+    <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.ParsleyConfig.ParsleyUI().listen() : <span class="hljs-keyword">new</span> ParsleyUI().listen();</pre></div></div>
             
         </li>
         
@@ -813,8 +813,8 @@ Could be overriden by defining a <code>window.ParsleyConfig.ParsleyUI</code> app
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> window.ParsleyExtend)
-    window.ParsleyExtend = {};</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span>.ParsleyExtend)
+    <span class="hljs-built_in">window</span>.ParsleyExtend = {};</pre></div></div>
             
         </li>
         
@@ -830,8 +830,8 @@ Could be overriden by defining a <code>window.ParsleyConfig.ParsleyUI</code> app
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> window.ParsleyConfig)
-    window.ParsleyConfig = {};</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span>.ParsleyConfig)
+    <span class="hljs-built_in">window</span>.ParsleyConfig = {};</pre></div></div>
             
         </li>
         
@@ -846,9 +846,9 @@ Could be overriden by defining a <code>window.ParsleyConfig.ParsleyUI</code> app
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  window.Parsley = window.psly = Parsley;
-  window.ParsleyUtils = ParsleyUtils;
-  window.ParsleyValidator = <span class="hljs-keyword">new</span> ParsleyValidator(window.ParsleyConfig.validators, window.ParsleyConfig.i18n);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">window</span>.Parsley = <span class="hljs-built_in">window</span>.psly = Parsley;
+  <span class="hljs-built_in">window</span>.ParsleyUtils = ParsleyUtils;
+  <span class="hljs-built_in">window</span>.ParsleyValidator = <span class="hljs-keyword">new</span> ParsleyValidator(<span class="hljs-built_in">window</span>.ParsleyConfig.validators, <span class="hljs-built_in">window</span>.ParsleyConfig.i18n);</pre></div></div>
             
         </li>
         
@@ -864,8 +864,8 @@ Could be overriden by defining a <code>window.ParsleyConfig.ParsleyUI</code> app
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> !== ParsleyUtils.get(window, <span class="hljs-string">'ParsleyConfig.autoBind'</span>))
-    $(document).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> !== ParsleyUtils.get(<span class="hljs-built_in">window</span>, <span class="hljs-string">'ParsleyConfig.autoBind'</span>))
+    $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         

@@ -99,8 +99,8 @@
             <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/form'</span>, [
   <span class="hljs-string">'parsley/abstract'</span>,
   <span class="hljs-string">'parsley/utils'</span>
-], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyAbstract, ParsleyUtils)</span> {</span>
-  <span class="hljs-keyword">var</span> ParsleyForm = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(element, OptionsFactory)</span> {</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ParsleyAbstract, ParsleyUtils)</span> </span>{
+  <span class="hljs-keyword">var</span> ParsleyForm = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(element, OptionsFactory)</span> </span>{
     <span class="hljs-keyword">this</span>.__class__ = <span class="hljs-string">'ParsleyForm'</span>;
     <span class="hljs-keyword">this</span>.__id__ = ParsleyUtils.hash(<span class="hljs-number">4</span>);
 
@@ -115,7 +115,7 @@
   };
 
   ParsleyForm.prototype = {
-    onSubmitValidate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(event)</span> {</span>
+    onSubmitValidate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(event)</span> </span>{
       <span class="hljs-keyword">this</span>.validate(<span class="hljs-literal">undefined</span>, <span class="hljs-literal">undefined</span>, event);</pre></div></div>
             
         </li>
@@ -152,7 +152,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    validate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(group, force, event)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    validate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(group, force, event)</span> </span>{
       <span class="hljs-keyword">this</span>.submitEvent = event;
       <span class="hljs-keyword">this</span>.validationResult = <span class="hljs-literal">true</span>;
 
@@ -230,7 +230,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    isValid: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(group, force)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    isValid: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(group, force)</span> </span>{
       <span class="hljs-keyword">this</span>._refreshFields();
 
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.fields.length; i++) {</pre></div></div>
@@ -258,18 +258,18 @@
       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
     },
 
-    _refreshFields: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+    _refreshFields: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.actualizeOptions()._bindFields();
     },
 
-    _bindFields: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+    _bindFields: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
       <span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span>;
 
       <span class="hljs-keyword">this</span>.fields = [];
       <span class="hljs-keyword">this</span>.fieldsMappedById = {};
 
-      <span class="hljs-keyword">this</span>.$element.find(<span class="hljs-keyword">this</span>.options.inputs).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
-        <span class="hljs-keyword">var</span> fieldInstance = <span class="hljs-keyword">new</span> window.Parsley(<span class="hljs-keyword">this</span>, {}, self);</pre></div></div>
+      <span class="hljs-keyword">this</span>.$element.find(<span class="hljs-keyword">this</span>.options.inputs).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">var</span> fieldInstance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.Parsley(<span class="hljs-keyword">this</span>, {}, self);</pre></div></div>
             
         </li>
         

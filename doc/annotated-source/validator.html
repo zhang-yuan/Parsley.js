@@ -98,8 +98,8 @@
             
             <div class="content"><div class='highlight'><pre>define(<span class="hljs-string">'parsley/validator'</span>, [
   <span class="hljs-string">'validator'</span>
-], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Validator)</span> {</span>
-  <span class="hljs-keyword">var</span> ParsleyValidator = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(validators, catalog)</span> {</span>
+], <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Validator)</span> </span>{
+  <span class="hljs-keyword">var</span> ParsleyValidator = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(validators, catalog)</span> </span>{
     <span class="hljs-keyword">this</span>.__class__ = <span class="hljs-string">'ParsleyValidator'</span>;
     <span class="hljs-keyword">this</span>.Validator = Validator;</pre></div></div>
             
@@ -122,7 +122,7 @@
   };
 
   ParsleyValidator.prototype = {
-    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(validators, catalog)</span> {</span>
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(validators, catalog)</span> </span>{
       <span class="hljs-keyword">this</span>.catalog = catalog;
 
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> name <span class="hljs-keyword">in</span> validators)
@@ -144,7 +144,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    setLocale: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(locale)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    setLocale: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(locale)</span> </span>{
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.catalog[locale])
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(locale + <span class="hljs-string">' is not available in the catalog'</span>);
 
@@ -166,7 +166,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    addCatalog: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(locale, messages, set)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    addCatalog: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(locale, messages, set)</span> </span>{
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'object'</span> === <span class="hljs-keyword">typeof</span> messages)
         <span class="hljs-keyword">this</span>.catalog[locale] = messages;
 
@@ -189,8 +189,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    addMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(locale, name, message)</span> {</span>
-      <span class="hljs-keyword">if</span> (<span class="hljs-literal">undefined</span> === <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.catalog[locale])
+            <div class="content"><div class='highlight'><pre>    addMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(locale, name, message)</span> </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.catalog[locale])
         <span class="hljs-keyword">this</span>.catalog[locale] = {};
 
       <span class="hljs-keyword">this</span>.catalog[locale][name.toLowerCase()] = message;
@@ -198,7 +198,7 @@
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },
 
-    validate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value, constraints, priority)</span> {</span>
+    validate: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value, constraints, priority)</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.Validator.Validator().validate.apply(<span class="hljs-keyword">new</span> Validator.Validator(), <span class="hljs-built_in">arguments</span>);
     },</pre></div></div>
             
@@ -215,8 +215,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    addValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn, priority, requirementsTransformer)</span> {</span>
-      <span class="hljs-keyword">this</span>.validators[name.toLowerCase()] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(requirements)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    addValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn, priority, requirementsTransformer)</span> </span>{
+      <span class="hljs-keyword">this</span>.validators[name.toLowerCase()] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(requirements)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Callback(fn, requirements), {
           priority: priority,
           requirementsTransformer: requirementsTransformer
@@ -226,17 +226,17 @@
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },
 
-    updateValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn, priority, requirementsTransformer)</span> {</span>
+    updateValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name, fn, priority, requirementsTransformer)</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.addValidator(name, fn, priority, requirementsTransformer);
     },
 
-    removeValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> {</span>
+    removeValidator: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(name)</span> </span>{
       <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.validators[name];
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },
 
-    getErrorMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(constraint)</span> {</span>
+    getErrorMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(constraint)</span> </span>{
       <span class="hljs-keyword">var</span> message;</pre></div></div>
             
         </li>
@@ -273,7 +273,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    formatMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(string, parameters)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    formatMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(string, parameters)</span> </span>{
       <span class="hljs-keyword">if</span> (<span class="hljs-string">'object'</span> === <span class="hljs-keyword">typeof</span> parameters) {
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> parameters)
           string = <span class="hljs-keyword">this</span>.formatMessage(string, parameters[i]);
@@ -300,13 +300,13 @@ and a Parsley priority set</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    validators: {
-      notblank: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+      notblank: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().NotBlank(), { priority: <span class="hljs-number">2</span> });
       },
-      required: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+      required: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Required(), { priority: <span class="hljs-number">512</span> });
       },
-      type: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(type)</span> {</span>
+      type: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(type)</span> </span>{
         <span class="hljs-keyword">var</span> assert;
 
         <span class="hljs-keyword">switch</span> (type) {
@@ -349,7 +349,7 @@ and a Parsley priority set</p>
 
         <span class="hljs-keyword">return</span> $.extend(assert, { priority: <span class="hljs-number">256</span> });
       },
-      pattern: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(regexp)</span> {</span>
+      pattern: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(regexp)</span> </span>{
         <span class="hljs-keyword">var</span> flags = <span class="hljs-string">''</span>;</pre></div></div>
             
         </li>
@@ -402,54 +402,54 @@ everything excluding the opening and closing slashes and the flags</p>
 
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Regexp(regexp, flags), { priority: <span class="hljs-number">64</span> });
       },
-      minlength: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+      minlength: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Length({ min: value }), {
           priority: <span class="hljs-number">30</span>,
-          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> <span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> value &amp;&amp; !<span class="hljs-built_in">isNaN</span>(value) ? <span class="hljs-built_in">parseInt</span>(value, <span class="hljs-number">10</span>) : value;
           }
         });
       },
-      maxlength: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+      maxlength: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Length({ max: value }), {
         priority: <span class="hljs-number">30</span>,
-        requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+        requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> <span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> value &amp;&amp; !<span class="hljs-built_in">isNaN</span>(value) ? <span class="hljs-built_in">parseInt</span>(value, <span class="hljs-number">10</span>) : value;
           }
       });
       },
-      length: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> {</span>
+      length: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Length({ min: array[<span class="hljs-number">0</span>], max: array[<span class="hljs-number">1</span>] }), { priority: <span class="hljs-number">32</span> });
       },
-      mincheck: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(length)</span> {</span>
+      mincheck: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(length)</span> </span>{
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.minlength(length);
       },
-      maxcheck: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(length)</span> {</span>
+      maxcheck: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(length)</span> </span>{
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.maxlength(length);
       },
-      check: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> {</span>
+      check: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> </span>{
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length(array);
       },
-      min: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+      min: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().GreaterThanOrEqual(value), {
           priority: <span class="hljs-number">30</span>,
-          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> <span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> value &amp;&amp; !<span class="hljs-built_in">isNaN</span>(value) ? <span class="hljs-built_in">parseInt</span>(value, <span class="hljs-number">10</span>) : value;
           }
         });
       },
-      max: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+      max: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().LessThanOrEqual(value), {
           priority: <span class="hljs-number">30</span>,
-          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> <span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> value &amp;&amp; !<span class="hljs-built_in">isNaN</span>(value) ? <span class="hljs-built_in">parseInt</span>(value, <span class="hljs-number">10</span>) : value;
           }
         });
       },
-      range: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> {</span>
+      range: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Range(array[<span class="hljs-number">0</span>], array[<span class="hljs-number">1</span>]), {
           priority: <span class="hljs-number">32</span>,
-          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++)
               array[i] = <span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> array[i] &amp;&amp; !<span class="hljs-built_in">isNaN</span>(array[i]) ? <span class="hljs-built_in">parseInt</span>(array[i], <span class="hljs-number">10</span>) : array[i];
 
@@ -457,10 +457,10 @@ everything excluding the opening and closing slashes and the flags</p>
           }
         });
       },
-      equalto: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> {</span>
+      equalto: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().EqualTo(value), {
           priority: <span class="hljs-number">256</span>,
-          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> {</span>
+          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> $(value).length ? $(value).val() : value;
           }
         });
