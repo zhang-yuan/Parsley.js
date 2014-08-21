@@ -203,7 +203,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (group &amp;&amp; group !== <span class="hljs-keyword">this</span>.fields[i].options.group)
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (group &amp;&amp; !<span class="hljs-keyword">this</span>._isFieldInGroup(<span class="hljs-keyword">this</span>.fields[i], group))
           <span class="hljs-keyword">continue</span>;
 
         fieldValidationResult = <span class="hljs-keyword">this</span>.fields[i].validate(force);
@@ -248,7 +248,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (group &amp;&amp; group !== <span class="hljs-keyword">this</span>.fields[i].options.group)
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (group &amp;&amp; !<span class="hljs-keyword">this</span>._isFieldInGroup(<span class="hljs-keyword">this</span>.fields[i], group))
           <span class="hljs-keyword">continue</span>;
 
         <span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span> === <span class="hljs-keyword">this</span>.fields[i].isValid(force))
@@ -256,6 +256,12 @@
       }
 
       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    },
+
+    _isFieldInGroup: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(field, group)</span> </span>{
+      <span class="hljs-keyword">if</span>(ParsleyUtils.isArray(field.options.group))
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span> !== $.inArray(field.options.group, group);
+      <span class="hljs-keyword">return</span> field.options.group === group;
     },
 
     _refreshFields: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
