@@ -1,5 +1,14 @@
 # Parsley 2.x changelog
 
+## next stable release
+
+## 2.0.4
+
+  - added ParsleyField context to asyncValidator callback functions (#702)
+  - fixed AMD loading of Validator.js (#691, #693)
+  - added extra/words.js validators (#700)
+  - added support of multiple groups (#706)
+
 ## 2.0.3
 
   - fix not AMD loading for Wordpress case (#685)

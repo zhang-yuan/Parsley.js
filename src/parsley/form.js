@@ -45,7 +45,7 @@ define('parsley/form', [
       for (var i = 0; i < this.fields.length; i++) {
 
         // do not validate a field if not the same as given validation group
-        if (group && group !== this.fields[i].options.group)
+        if (group && !this._isFieldInGroup(this.fields[i], group))
           continue;
 
         fieldValidationResult = this.fields[i].validate(force);
@@ -66,7 +66,7 @@ define('parsley/form', [
       for (var i = 0; i < this.fields.length; i++) {
 
         // do not validate a field if not the same as given validation group
-        if (group && group !== this.fields[i].options.group)
+        if (group && !this._isFieldInGroup(this.fields[i], group))
           continue;
 
         if (false === this.fields[i].isValid(force))
@@ -74,6 +74,12 @@ define('parsley/form', [
       }
 
       return true;
+    },
+
+    _isFieldInGroup: function (field, group) {
+      if(ParsleyUtils.isArray(field.options.group))
+        return -1 !== $.inArray(field.options.group, group);
+      return field.options.group === group;
     },
 
     _refreshFields: function () {

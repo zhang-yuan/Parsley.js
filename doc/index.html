@@ -349,7 +349,7 @@
               </tr>
               <tr>
                 <td><code>data-parsley-group</code> <version>#2.0</version></td>
-                <td>Assign a group to a field for specific group validation. eg: <code>data-parsley-group="signup"</code>. This way, you could only validate a portion of a form and not all the fields.</td>
+                <td>Assign a group to a field for specific group validation. eg: <code>data-parsley-group="signup"</code>. This way, you could only validate a portion of a form and not all the fields. Can be multiple. eg: <code>data-parsley-group='["foo", "bar"]'</code></td>
               </tr>
               <tr>
                 <td><code>data-parsley-multiple</code> <version>#2.0</version></td>
@@ -393,7 +393,11 @@
             <tbody>
               <tr>
                 <td><code>isValid(force)</code> <version>#2.0</version></td>
-                <td><code>boolean</code></td>
+                <td>
+                  <code>true</code> if all ok<br/>
+                  <code>[]</code> if empty optional field<br/>
+                  <code>[Violation [, Violation..]]</code> if fails
+                </td>
                 <td>Returns if the Field is valid or not. <strong>Does not affect UI nor fires <a href="#events">events</a>.</strong> If <code>force</code> is given, it forces validation even on non required fields (<a href="examples/events.html">See example</a>)</td>
               </tr>
               <tr>
@@ -1004,7 +1008,9 @@ window.ParsleyValidator
             <tr>
               <td>Validator</td>
               <td><code>data-parsley-remote-validator</code> <version>#2.0</version></td>
-              <td>Use a specific remote validator. By default, there are 2 built-in remote validators: <code>default</code> and <code>reverse</code>. Default one is used by default and Reverse one used when <code>data-parsley-remote-reverse</code> is set to true. (this is an alias, you could use <code>data-parsley-remote-validator="reverse"</code>). To learn how to craft your custom remote validators, go <a href="#remote-custom">here</a>.</td>
+              <td><p>Use a specific remote validator. By default, there are 2 built-in remote validators: <code>default</code> and <code>reverse</code>. Default one is used by default and Reverse one used when <code>data-parsley-remote-reverse</code> is set to true. (this is an alias, you could use <code>data-parsley-remote-validator="reverse"</code>).</p>
+                  <p>Inside the function, <code>this</code> keyword refers to the <code>ParsleyField</code> instance attached to the form element. You have access to the plugin as well as the element if you need to perform other actions before returning the validation result.</p>
+                  <p>To learn how to craft your custom remote validators, go <a href="#remote-custom">here</a>.</p></td>
             </tr>
           </tbody>
         </table>
@@ -1045,6 +1051,8 @@ window.ParsleyExtend = {
   asyncValidators: {
     mycustom: {
       fn: function (xhr) {
+        console.log(this.$element); // jQuery Object[ input[name="q"] ]
+
         return 404 === xhr.status;
       },
       url: 'http://mycustomapiurl.ext'
@@ -1064,6 +1072,8 @@ window.ParsleyExtend = {
 &lt;script type="text/javascript">
 $('[name="q"]').parsley()
   .addAsyncValidator('mycustom', function (xhr) {
+    console.log(this.$element); // jQuery Object[ input[name="q"] ]
+
     return 404 === xhr.status;
   }, 'http://mycustomapiurl.ext');
 &lt;/script>
@@ -1146,6 +1156,51 @@ $('[name="q"]').parsley()
                </table>
              </td>
              <td>Validates that the value is less than or equal to another field's one</td>
+           </tr>
+           <tr>
+             <td>
+               <a name="psly-validator-minwords"></a>
+               Minwords <version>#2.0</version>
+             </td>
+             <td>
+               <table class="table-stripped hundred">
+                 <tr>
+                   <td><code>data-parsley-minwords="200"</code></td>
+                   <td></td>
+                 </tr>
+               </table>
+             </td>
+             <td>Validates that the value have at least a certain amount of words</td>
+           </tr>
+           <tr>
+             <td>
+               <a name="psly-validator-maxwords"></a>
+               Minwords <version>#2.0</version>
+             </td>
+             <td>
+               <table class="table-stripped hundred">
+                 <tr>
+                   <td><code>data-parsley-maxwords="200"</code></td>
+                   <td></td>
+                 </tr>
+               </table>
+             </td>
+             <td>Validates that the value have a maximum of a certain amount of words</td>
+           </tr>
+           <tr>
+             <td>
+               <a name="psly-validator-words"></a>
+               Minwords <version>#2.0</version>
+             </td>
+             <td>
+               <table class="table-stripped hundred">
+                 <tr>
+                   <td><code>data-parsley-words="[200, 600]"</code></td>
+                   <td></td>
+                 </tr>
+               </table>
+             </td>
+             <td>Validates that the value is within a certain range of words</td>
            </tr>
          </tbody>
         </table>
