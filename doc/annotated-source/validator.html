@@ -113,7 +113,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Validator = <span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> Validator ? Validator : <span class="hljs-built_in">module</span>.exports;
+            <div class="content"><div class='highlight'><pre>  Validator = <span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> Validator ? Validator : (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> ? <span class="hljs-built_in">module</span>.exports : <span class="hljs-literal">null</span>);
 
   <span class="hljs-keyword">var</span> ParsleyValidator = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(validators, catalog)</span> </span>{
     <span class="hljs-keyword">this</span>.__class__ = <span class="hljs-string">'ParsleyValidator'</span>;
