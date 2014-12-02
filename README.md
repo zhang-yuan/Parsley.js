@@ -6,7 +6,7 @@ JavaScript form validation, without actually writing a single line of JavaScript
 
 ## Version
 
-2.0.5
+2.0.6
 
 ## Doc
 
@@ -20,7 +20,7 @@ jQuery >= 1.8
 
 See `CONTRIBUTING.md` file
 
-##Integrations
+## Integrations
 
 Create integration with other framework as a separate Github repo and send a pull request for including here.
 Some integrations are

@@ -64,10 +64,16 @@ define(function () {
           .removeConstraint('required');
         expect(parsleyField.constraints.length).to.be(1);
         expect(parsleyField.constraints[0].name).to.be('notblank');
+        expect(parsleyField._isRequired()).to.be(false);
       });
       it('should return an empty array for fields withoud constraints', function () {
-        $('body').append('<input type="text" id="element" value="" />');
-        expect(new Parsley($('#element')).isValid()).to.eql([]);
+        $('body').append('<input type="text" id="element" value="hola" data-parsley-minlength="5" />');
+        var parsleyField = new Parsley($('#element'));
+        // Start with some validation errors:
+        expect(parsleyField.isValid()).to.eql(false);
+        // The remove constraint and check result:
+        $('#element').removeAttr('data-parsley-minlength');
+        expect(parsleyField.isValid()).to.eql([]);
       });
       it('should properly bind HTML5 supported constraints', function () {
         $('body').append('<input type="email" pattern="\\w+" id="element" required min="5" max="100" />');
@@ -78,10 +84,25 @@ define(function () {
         // still 4 validators, with max instead of range now
         expect(parsleyField.actualizeOptions().constraints.length).to.be(4);
       });
-      it('should properly bind special HTML5 `number` type', function () {
+      it('should use integer validation HTML5 `number` type without a step attribute', function () {
         $('body').append('<input type="number" id="element" />');
         var parsleyField = new Parsley($('#element'));
         expect(parsleyField.constraints[0].requirements).to.be('integer');
+      });
+      it('should use integer validation HTML5 `number` type with integer value step', function () {
+        $('body').append('<input type="number" id="element" step="3" />');
+        var parsleyField = new Parsley($('#element'));
+        expect(parsleyField.constraints[0].requirements).to.be('integer');
+      });
+      it('should use number validation for HTML5 `number` with float value step', function () {
+        $('body').append('<input type="number" id="element" step="0.3" />');
+        var parsleyField = new Parsley($('#element'));
+        expect(parsleyField.constraints[0].requirements).to.be('number');
+      });
+      it('should use number validation for HTML5 `number` with step="any"', function () {
+        $('body').append('<input type="number" id="element" step="any" />');
+        var parsleyField = new Parsley($('#element'));
+        expect(parsleyField.constraints[0].requirements).to.be('number');
       });
       it('should valid simple validator', function () {
         $('body').append('<input type="text" id="element" value="" />');
