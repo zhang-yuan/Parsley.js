@@ -428,11 +428,11 @@ everything excluding the opening and closing slashes and the flags</p>
       },
       maxlength: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Length({ max: value }), {
-        priority: <span class="hljs-number">30</span>,
-        requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          priority: <span class="hljs-number">30</span>,
+          requirementsTransformer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> <span class="hljs-string">'string'</span> === <span class="hljs-keyword">typeof</span> value &amp;&amp; !<span class="hljs-built_in">isNaN</span>(value) ? <span class="hljs-built_in">parseInt</span>(value, <span class="hljs-number">10</span>) : value;
           }
-      });
+        });
       },
       length: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array)</span> </span>{
         <span class="hljs-keyword">return</span> $.extend(<span class="hljs-keyword">new</span> Validator.Assert().Length({ min: array[<span class="hljs-number">0</span>], max: array[<span class="hljs-number">1</span>] }), { priority: <span class="hljs-number">32</span> });

@@ -979,9 +979,10 @@ about success or failure have been displayed, always validate with this trigger 
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      parsleyInstance._ui.$errorsWrapper.children().each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-        $(<span class="hljs-keyword">this</span>).remove();
-      });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      parsleyInstance._ui.$errorsWrapper
+        .removeClass(<span class="hljs-string">'filled'</span>)
+        .children()
+        .remove();</pre></div></div>
             
         </li>
         
