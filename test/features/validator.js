@@ -103,7 +103,6 @@ define(function () {
         expect(parsleyValidator.validate('www.foo.bar', parsleyValidator.validators.type('url'))).to.be(true);
         expect(parsleyValidator.validate('http://www.foo.bar', parsleyValidator.validators.type('url'))).to.be(true);
         expect(parsleyValidator.validate('https://www.foo.bar', parsleyValidator.validators.type('url'))).to.be(true);
-        expect(parsleyValidator.validate('https://www.foobarbaz.barbazbar.bazbar', parsleyValidator.validators.type('url'))).not.to.be(true);
       });
       it('should have a pattern validator', function () {
         expect(parsleyValidator.validate('a', parsleyValidator.validators.pattern('[a-z]+'))).to.be(true);
@@ -181,8 +180,7 @@ define(function () {
       afterEach(function () {
         window.ParsleyConfig = { i18n: window.ParsleyConfig.i18n, validators: window.ParsleyConfig.validators };
 
-        if ($('#element').length)
-          $('#element').remove();
+        $('#element').remove();
       });
     });
   };

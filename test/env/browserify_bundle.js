@@ -9919,7 +9919,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
     validationThreshold: 3,
     // Focused field on form validation error. 'fist'|'last'|'none'
     focus: 'first',
-    // `$.Event()` that will trigger validation. eg: `keyup`, `change`..
+    // `$.Event()` that will trigger validation. eg: `keyup`, `change`...
     trigger: false,
     // Class that would be added on every failing validation Parsley field
     errorClass: 'parsley-error',
@@ -10315,7 +10315,7 @@ var Validator = ( function ( ) {
       else
         this.arguments.splice( 0, 1 );
       if ( 'function' !== typeof fn )
-        throw new Error( 'Callback must be instanciated with a function' );
+        throw new Error( 'Callback must be instantiated with a function' );
       this.fn = fn;
       this.validate = function ( value ) {
         var result = this.fn.apply( this, [ value ].concat( this.arguments ) );
@@ -10328,7 +10328,7 @@ var Validator = ( function ( ) {
     Choice: function ( list ) {
       this.__class__ = 'Choice';
       if ( !_isArray( list ) && 'function' !== typeof list )
-        throw new Error( 'Choice must be instanciated with an array or a function' );
+        throw new Error( 'Choice must be instantiated with an array or a function' );
       this.list = list;
       this.validate = function ( value ) {
         var list = 'function' === typeof this.list ? this.list() : this.list;
@@ -10388,7 +10388,7 @@ var Validator = ( function ( ) {
     EqualTo: function ( reference ) {
       this.__class__ = 'EqualTo';
       if ( 'undefined' === typeof reference )
-        throw new Error( 'EqualTo must be instanciated with a value or a function' );
+        throw new Error( 'EqualTo must be instantiated with a value or a function' );
       this.reference = reference;
       this.validate = function ( value ) {
         var reference = 'function' === typeof this.reference ? this.reference( value ) : this.reference;
@@ -10429,7 +10429,7 @@ var Validator = ( function ( ) {
     InstanceOf: function ( classRef ) {
       this.__class__ = 'InstanceOf';
       if ( 'undefined' === typeof classRef )
-        throw new Error( 'InstanceOf must be instanciated with a value' );
+        throw new Error( 'InstanceOf must be instantiated with a value' );
       this.classRef = classRef;
       this.validate = function ( value ) {
         if ( true !== (value instanceof this.classRef) )
@@ -10441,7 +10441,7 @@ var Validator = ( function ( ) {
     Length: function ( boundaries ) {
       this.__class__ = 'Length';
       if ( !boundaries.min && !boundaries.max )
-        throw new Error( 'Lenth assert must be instanciated with a { min: x, max: y } object' );
+        throw new Error( 'Lenth assert must be instantiated with a { min: x, max: y } object' );
       this.min = boundaries.min;
       this.max = boundaries.max;
       this.validate = function ( value ) {
@@ -10602,7 +10602,7 @@ var Validator = ( function ( ) {
   // https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/indexOf
   if (!Array.prototype.indexOf)
     Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
-        
+
         if (this === null) {
             throw new TypeError();
         }
@@ -10653,7 +10653,7 @@ var Validator = ( function ( ) {
     window[ 'undefined' !== typeof validatorjs_ns ? validatorjs_ns : 'Validator' ] = exports;
   }
 
-  return exports; 
+  return exports;
 } )( );
 
   // This is needed for Browserify usage that requires Validator.js through module.exports
@@ -10870,7 +10870,7 @@ var Validator = ( function ( ) {
       var diff = this._diff(fieldInstance.validationResult, fieldInstance._ui.lastValidationResult);
       // Then store current validation result for next reflow
       fieldInstance._ui.lastValidationResult = fieldInstance.validationResult;
-      // Field have been validated at least once if here. Useful for binded key events..
+      // Field have been validated at least once if here. Useful for binded key events...
       fieldInstance._ui.validatedOnce = true;
       // Handle valid / invalid / none field class
       this.manageStatusClass(fieldInstance);
@@ -10929,7 +10929,7 @@ var Validator = ( function ( ) {
         this.updateError(fieldInstance, diff.kept[i].assert.name, undefined, diff.kept[i].assert, true);
     },
     // TODO: strange API here, intuitive for manual usage with addError(pslyInstance, 'foo', 'bar')
-    // but a little bit complex for above internal usage, with forced undefined parametter..
+    // but a little bit complex for above internal usage, with forced undefined parametter...
     addError: function (fieldInstance, name, message, assert, doNotUpdateClass) {
       fieldInstance._ui.$errorsWrapper
         .addClass('filled')
@@ -11048,7 +11048,7 @@ var Validator = ( function ( ) {
       // If this function returned a valid existing DOM element, go for it
       if ('undefined' !== typeof $handler && $handler.length)
         return $handler;
-      // Otherwise, if simple element (input, texatrea, select..) it will perfectly host the classes
+      // Otherwise, if simple element (input, texatrea, select...) it will perfectly host the classes
       if ('undefined' === typeof fieldInstance.options.multiple || fieldInstance.$element.is('select'))
         return fieldInstance.$element;
       // But if multiple element (radio, checkbox), that would be their parent
@@ -11331,7 +11331,7 @@ var Validator = ( function ( ) {
     // @returns validationResult:
     //  - `true` if all constraint passes
     //  - `[]` if not required field and empty (not validated)
-    //  - `[Violation, [Violation..]]` if there were validation errors
+    //  - `[Violation, [Violation...]]` if there were validation errors
     validate: function (force) {
       this.value = this.getValue();
       // Field Validate event. `this.value` could be altered for custom needs
@@ -11665,7 +11665,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
     this.__class__ = 'Parsley';
     this.__version__ = '2.0.4';
     this.__id__ = ParsleyUtils.hash(4);
-    // Parsley must be instanciated with a DOM element or jQuery $element
+    // Parsley must be instantiated with a DOM element or jQuery $element
     if ('undefined' === typeof element)
       throw new Error('You must give an element');
     if ('undefined' !== typeof parsleyFormInstance && 'ParsleyForm' !== parsleyFormInstance.__class__)
@@ -11700,7 +11700,7 @@ if ('undefined' !== typeof window.ParsleyValidator)
       return (this.$element.is('input[type=radio], input[type=checkbox]') && 'undefined' === typeof this.options.multiple) || (this.$element.is('select') && 'undefined' !== typeof this.$element.attr('multiple'));
     },
     // Multiples fields are a real nightmare :(
-    // Maybe some refacto would be appreciated here..
+    // Maybe some refacto would be appreciated here...
     handleMultiple: function (parsleyFormInstance) {
       var
         that = this,

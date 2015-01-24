@@ -151,6 +151,31 @@ define(function () {
         expect(formInstance.fields[0].$element.attr('id')).to.be('email');
         expect(fieldInstance.parent.__class__).to.be('ParsleyForm');
       });
+      it('should fire the right callbacks in the right order', function () {
+        var $form = $('<form><input type="string" required /><form>').appendTo($('body'));
+        $form.on('submit', function (e) {
+          e.preventDefault();
+        });
+
+        var callbacks = [];
+        var parsleyInstance = $form.parsley();
+        $.each(['validate', 'error', 'success', 'validated'], function(i, cb) {
+          parsleyInstance.subscribe('parsley:form:' + cb, function() {
+            callbacks.push(cb);
+          });
+        });
+        $form.submit();
+        $form.find('input').val('Hello');
+        $form.submit();
+        expect(callbacks.join()).to.be('validate,error,validated,validate,success,validated');
+      });
+      it('should fire "parsley:form:validate" to give the opportunity for changes before validation occurs', function() {
+        var $form = $('<form><input type="string" required /><form>').appendTo($('body'));
+        $form.parsley().subscribe('parsley:form:validate', function(psly) {
+          psly.$element.find('input').remove();
+        });
+        expect($form.parsley().validate()).to.be(true);
+      });
       it('should stop event propagation on form submit', function (done) {
         $('body').append('<form id="element"><input type="text" required/></form>');
         var parsleyInstance = $('#element').parsley();
@@ -167,8 +192,7 @@ define(function () {
         $('#element').submit();
       });
       afterEach(function () {
-        if ($('#element').length)
-          $('#element').remove();
+        $('#element').remove();
       });
     });
   };

@@ -576,7 +576,16 @@ window.ParsleyConfig = {
                   <a name="psly-validator-minlength"></a>
                   Minlength <version>#2.0</version>
                 </td>
-                <td><code>data-parsley-minlength="6"</code></td>
+                <td><table class="table-stripped hundred">
+                    <tr>
+                      <td><code>minlength="6"</code></td>
+                      <td><span class="label label-info pull-right">HTML5</span></td>
+                    </tr>
+                    <tr>
+                      <td><code>data-parsley-minlength="6"</code></td>
+                      <td></td>
+                    </tr>
+                  </table></td>
                 <td>Validates that the length of a string is at least as long as the given limit.</td>
               </tr>
               <tr>
@@ -584,7 +593,16 @@ window.ParsleyConfig = {
                   <a name="psly-validator-maxlength"></a>
                   Maxlength <version>#2.0</version>
                 </td>
-                <td><code>data-parsley-maxlength="10"</code></td>
+                <td><table class="table-stripped hundred">
+                    <tr>
+                      <td><code>maxlength="6"</code></td>
+                      <td><span class="label label-info pull-right">HTML5</span></td>
+                    </tr>
+                    <tr>
+                      <td><code>data-parsley-maxlength="6"</code></td>
+                      <td></td>
+                    </tr>
+                  </table></td>
                 <td>Validates that the length of a string is not larger than the given limit.</td>
               </tr>
               <tr>
@@ -612,7 +630,7 @@ window.ParsleyConfig = {
                     </tr>
                   </table>
                 </td>
-                <td>Validates that a given number is greater than some minimum number.</td>
+                <td>Validates that a given number is greater than or equal to some minimum number.</td>
               </tr>
               <tr>
                 <td>
@@ -631,7 +649,7 @@ window.ParsleyConfig = {
                     </tr>
                   </table>
                 </td>
-                <td>Validates that a given number is less than some maximum number.</td>
+                <td>Validates that a given number is less than or equal to some maximum number.</td>
               </tr>
               <tr>
                 <td>
@@ -701,7 +719,7 @@ window.ParsleyConfig = {
                   Equalto <version>#2.0</version>
                 </td>
                 <td><code>data-parsley-equalto="#anotherfield"</code></td>
-                <td>Validates that the value is identical to another field value (useful for password confirmation check).</td>
+                <td>Validates that the value is identical to another field's value (useful for password confirmation check).</td>
               </tr>
             </tbody>
           </table>
@@ -740,7 +758,7 @@ window.ParsleyConfig = {
 &lt;/script>
 </code></pre>
             </li>
-            <li>By registering them in <code>ParsleyValidator</code> <strong>after</strong> that <code>parsley.js</code> is loaded:
+            <li>By registering them in <code>ParsleyValidator</code> <strong>after</strong> <code>parsley.js</code> is loaded:
 
 <pre><code>&lt;input type="text" data-parsley-multiple="3" />
 [...]
@@ -907,10 +925,22 @@ window.ParsleyValidator
               <td>Fired when a form validation is triggered, <strong>before</strong> its validation.</td>
             </tr>
             <tr>
+              <td><code>parsley:form:success</code> <version>#2.0</version></td>
+              <td><code>ParsleyForm</code></td>
+              <td><code>.validate()</code></td>
+              <td>Fired when a form validation is triggered, <strong>after</strong> its validation succeeds.</td>
+            </tr>
+            <tr>
+              <td><code>parsley:form:error</code> <version>#2.0</version></td>
+              <td><code>ParsleyForm</code></td>
+              <td><code>.validate()</code></td>
+              <td>Fired when a form validation is triggered, <strong>after</strong> its validation fails.</td>
+            </tr>
+            <tr>
               <td><code>parsley:form:validated</code> <version>#2.0</version></td>
               <td><code>ParsleyForm</code></td>
               <td><code>.validate()</code></td>
-              <td>Fired when a form validation is triggered, <strong>after</strong> its validation.</td>
+              <td>Fired when a form validation is triggered, <strong>after</strong> its validation finishes (with success or with errors).</td>
             </tr>
             <tr>
               <td><code>parsley:field:init</code> <version>#2.0</version></td>
@@ -935,6 +965,12 @@ window.ParsleyValidator
               <td><code>ParsleyField</code></td>
               <td><code>.validate()</code></td>
               <td>Fired when a field validation fails.</td>
+            </tr>
+            <tr>
+              <td><code>parsley:field:validated</code> <version>#2.0</version></td>
+              <td><code>ParsleyField</code></td>
+              <td><code>.validate()</code></td>
+              <td>Fired after a field is validated (with success or with errors).</td>
             </tr>
           </tbody>
         </table>
@@ -1110,9 +1146,13 @@ $('[name="q"]').parsley()
                    <td><code>data-parsley-gt="#anotherfield"</code></td>
                    <td></td>
                  </tr>
+                 <tr>
+                   <td><code>data-parsley-gt="6"</code></td>
+                   <td></td>
+                 </tr>
                </table>
              </td>
-             <td>Validates that the value is greater than another field's one</td>
+             <td>Validates that the value is greater than another field's value or some strict minimum number.</td>
            </tr>
            <tr>
              <td>
@@ -1125,9 +1165,13 @@ $('[name="q"]').parsley()
                    <td><code>data-parsley-gte="#anotherfield"</code></td>
                    <td></td>
                  </tr>
+                 <tr>
+                   <td><code>data-parsley-gte="6"</code></td>
+                   <td></td>
+                 </tr>
                </table>
              </td>
-             <td>Validates that the value is greater than or equal to another field's one</td>
+             <td>Validates that the value is greater than or equal to another field's value or some minimum number.</td>
            </tr>
            <tr>
              <td>
@@ -1140,9 +1184,13 @@ $('[name="q"]').parsley()
                    <td><code>data-parsley-lt="#anotherfield"</code></td>
                    <td></td>
                  </tr>
+                 <tr>
+                   <td><code>data-parsley-lt="6"</code></td>
+                   <td></td>
+                 </tr>
                </table>
              </td>
-             <td>Validates that the value is less than another field's one</td>
+             <td>Validates that the value is less than another field's value or some strict maximum number.</td>
            </tr>
            <tr>
              <td>
@@ -1155,9 +1203,13 @@ $('[name="q"]').parsley()
                    <td><code>data-parsley-lte="#anotherfield"</code></td>
                    <td></td>
                  </tr>
+                 <tr>
+                   <td><code>data-parsley-lte="6"</code></td>
+                   <td></td>
+                 </tr>
                </table>
              </td>
-             <td>Validates that the value is less than or equal to another field's one</td>
+             <td>Validates that the value is less than or equal to another field's value or some minimum number.</td>
            </tr>
            <tr>
              <td>
