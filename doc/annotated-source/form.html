@@ -156,7 +156,9 @@
       <span class="hljs-keyword">this</span>.submitEvent = event;
       <span class="hljs-keyword">this</span>.validationResult = <span class="hljs-literal">true</span>;
 
-      <span class="hljs-keyword">var</span> fieldValidationResult = [];</pre></div></div>
+      <span class="hljs-keyword">var</span> fieldValidationResult = [];
+
+      $.emit(<span class="hljs-string">'parsley:form:validate'</span>, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -171,9 +173,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>._refreshFields();
-
-      $.emit(<span class="hljs-string">'parsley:form:validate'</span>, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>._refreshFields();</pre></div></div>
             
         </li>
         
@@ -212,6 +212,7 @@
           <span class="hljs-keyword">this</span>.validationResult = <span class="hljs-literal">false</span>;
       }
 
+      $.emit(<span class="hljs-string">'parsley:form:'</span> + (<span class="hljs-keyword">this</span>.validationResult ? <span class="hljs-string">'success'</span> : <span class="hljs-string">'error'</span>), <span class="hljs-keyword">this</span>);
       $.emit(<span class="hljs-string">'parsley:form:validated'</span>, <span class="hljs-keyword">this</span>);
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.validationResult;

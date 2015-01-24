@@ -357,7 +357,7 @@ and a Parsley priority set</p>
             assert = <span class="hljs-keyword">new</span> Validator.Assert().Regexp(<span class="hljs-string">'^\\w+$'</span>, <span class="hljs-string">'i'</span>);
             <span class="hljs-keyword">break</span>;
           <span class="hljs-keyword">case</span> <span class="hljs-string">'url'</span>:
-            assert = <span class="hljs-keyword">new</span> Validator.Assert().Regexp(<span class="hljs-string">'(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&amp;//=]*)'</span>, <span class="hljs-string">'i'</span>);
+            assert = <span class="hljs-keyword">new</span> Validator.Assert().Regexp(<span class="hljs-string">'(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,24}\\b([-a-zA-Z0-9@:%_\\+.~#?&amp;//=]*)'</span>, <span class="hljs-string">'i'</span>);
             <span class="hljs-keyword">break</span>;
           <span class="hljs-keyword">default</span>:
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'validator type `'</span> + type + <span class="hljs-string">'` is not supported'</span>);

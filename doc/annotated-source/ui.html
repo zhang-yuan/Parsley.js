@@ -176,7 +176,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Field have been validated at least once if here. Useful for binded key events..</p>
+              <p>Field have been validated at least once if here. Useful for binded key events…</p>
 
             </div>
             
@@ -313,8 +313,10 @@
         <span class="hljs-keyword">if</span> ((diff.added.length || diff.kept.length)) {
           <span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> === fieldInstance._ui.$errorsWrapper.find(<span class="hljs-string">'.parsley-custom-error-message'</span>).length)
             fieldInstance._ui.$errorsWrapper
-              .append($(fieldInstance.options.errorTemplate)
-              .addClass(<span class="hljs-string">'parsley-custom-error-message'</span>));
+              .append(
+                $(fieldInstance.options.errorTemplate)
+                .addClass(<span class="hljs-string">'parsley-custom-error-message'</span>)
+              );
 
           <span class="hljs-keyword">return</span> fieldInstance._ui.$errorsWrapper
             .addClass(<span class="hljs-string">'filled'</span>)
@@ -361,16 +363,18 @@
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>TODO: strange API here, intuitive for manual usage with addError(pslyInstance, ‘foo’, ‘bar’)
-but a little bit complex for above internal usage, with forced undefined parametter..</p>
+but a little bit complex for above internal usage, with forced undefined parameter…</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    addError: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance, name, message, assert, doNotUpdateClass)</span> </span>{
       fieldInstance._ui.$errorsWrapper
         .addClass(<span class="hljs-string">'filled'</span>)
-        .append($(fieldInstance.options.errorTemplate)
-        .addClass(<span class="hljs-string">'parsley-'</span> + name)
-        .html(message || <span class="hljs-keyword">this</span>._getErrorMessage(fieldInstance, assert)));
+        .append(
+          $(fieldInstance.options.errorTemplate)
+          .addClass(<span class="hljs-string">'parsley-'</span> + name)
+          .html(message || <span class="hljs-keyword">this</span>._getErrorMessage(fieldInstance, assert))
+        );
 
       <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span> !== doNotUpdateClass)
         <span class="hljs-keyword">this</span>._errorClass(fieldInstance);
@@ -722,7 +726,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
-              <p>Otherwise, if simple element (input, texatrea, select..) it will perfectly host the classes</p>
+              <p>Otherwise, if simple element (input, texatrea, select…) it will perfectly host the classes</p>
 
             </div>
             
@@ -764,7 +768,9 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
     },
 
     actualizeTriggers: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fieldInstance)</span> </span>{
-      <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;</pre></div></div>
+      <span class="hljs-keyword">var</span> $toBind = fieldInstance.$element;
+      <span class="hljs-keyword">if</span> (fieldInstance.options.multiple)
+        $toBind = $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>)</pre></div></div>
             
         </li>
         
@@ -779,12 +785,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (fieldInstance.options.multiple)
-        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-          $(<span class="hljs-keyword">this</span>).off(<span class="hljs-string">'.Parsley'</span>);
-        });
-      <span class="hljs-keyword">else</span>
-        fieldInstance.$element.off(<span class="hljs-string">'.Parsley'</span>);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      $toBind.off(<span class="hljs-string">'.Parsley'</span>);</pre></div></div>
             
         </li>
         
@@ -820,19 +821,9 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (fieldInstance.options.multiple)
-        $(<span class="hljs-string">'['</span> + fieldInstance.options.namespace + <span class="hljs-string">'multiple="'</span> + fieldInstance.options.multiple + <span class="hljs-string">'"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-          $(<span class="hljs-keyword">this</span>).on(
-            triggers.split(<span class="hljs-string">' '</span>).join(<span class="hljs-string">'.Parsley '</span>) + <span class="hljs-string">'.Parsley'</span>,
-            <span class="hljs-literal">false</span>,
-            $.proxy(<span class="hljs-string">'function'</span> === <span class="hljs-keyword">typeof</span> fieldInstance.eventValidate ? fieldInstance.eventValidate : that.eventValidate, fieldInstance));
-        });
-      <span class="hljs-keyword">else</span>
-        fieldInstance.$element
-          .on(
-            triggers.split(<span class="hljs-string">' '</span>).join(<span class="hljs-string">'.Parsley '</span>) + <span class="hljs-string">'.Parsley'</span>,
-            <span class="hljs-literal">false</span>,
-            $.proxy(<span class="hljs-string">'function'</span> === <span class="hljs-keyword">typeof</span> fieldInstance.eventValidate ? fieldInstance.eventValidate : <span class="hljs-keyword">this</span>.eventValidate, fieldInstance));
+            <div class="content"><div class='highlight'><pre>      $toBind.on(
+        triggers.split(<span class="hljs-string">' '</span>).join(<span class="hljs-string">'.Parsley '</span>) + <span class="hljs-string">'.Parsley'</span>,
+        $.proxy(<span class="hljs-string">'function'</span> === <span class="hljs-keyword">typeof</span> fieldInstance.eventValidate ? fieldInstance.eventValidate : <span class="hljs-keyword">this</span>.eventValidate, fieldInstance));
     },</pre></div></div>
             
         </li>
@@ -859,7 +850,7 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
-              <p>For keyup, keypress, keydown.. events that could be a little bit obstrusive
+              <p>For keyup, keypress, keydown… events that could be a little bit obstrusive
 do not validate if val length &lt; min threshold on first validation. Once field have been validated once and info
 about success or failure have been displayed, always validate with this trigger to reflect every yalidation change.</p>
 

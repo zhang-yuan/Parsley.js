@@ -191,9 +191,9 @@
 <p>Validate field and $.emit some events for mainly <code>ParsleyUI</code>
 @returns validationResult:</p>
 <ul>
-<li><code>true</code> if all constraint passes</li>
+<li><code>true</code> if all constraints pass</li>
 <li><code>[]</code> if not required field and empty (not validated)</li>
-<li><code>[Violation, [Violation..]]</code> if there were validation errors</li>
+<li><code>[Violation, [Violation...]]</code> if there were validation errors</li>
 </ul>
 
             </div>
@@ -297,7 +297,8 @@ Same @return as <code>validate()</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      value = value || <span class="hljs-keyword">this</span>.getValue();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> === <span class="hljs-keyword">typeof</span> value || <span class="hljs-literal">null</span> === value)
+        value = <span class="hljs-keyword">this</span>.getValue();</pre></div></div>
             
         </li>
         
@@ -707,6 +708,54 @@ Bind specific HTML5 constraints to be HTML5 compliant</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
+              <p>length</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'minlength'</span>) &amp;&amp; <span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'maxlength'</span>))
+        <span class="hljs-keyword">this</span>.addConstraint(<span class="hljs-string">'length'</span>, [<span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'minlength'</span>), <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'maxlength'</span>)], <span class="hljs-literal">undefined</span>, <span class="hljs-literal">true</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>HTML5 minlength</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'minlength'</span>))
+        <span class="hljs-keyword">this</span>.addConstraint(<span class="hljs-string">'minlength'</span>, <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'minlength'</span>), <span class="hljs-literal">undefined</span>, <span class="hljs-literal">true</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>HTML5 maxlength</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">'undefined'</span> !== <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'maxlength'</span>))
+        <span class="hljs-keyword">this</span>.addConstraint(<span class="hljs-string">'maxlength'</span>, <span class="hljs-keyword">this</span>.$element.attr(<span class="hljs-string">'maxlength'</span>), <span class="hljs-literal">undefined</span>, <span class="hljs-literal">true</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
               <p>html5 types</p>
 
             </div>
@@ -719,11 +768,11 @@ Bind specific HTML5 constraints to be HTML5 compliant</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Small special case here for HTML5 number: integer validator if step attribute is undefined or an integer value, number otherwise</p>
 
@@ -739,11 +788,11 @@ Bind specific HTML5 constraints to be HTML5 compliant</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Regular other HTML5 supported types</p>
 
@@ -758,11 +807,11 @@ Bind specific HTML5 constraints to be HTML5 compliant</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Internal only.
 Field is required if have required constraint without <code>false</code> value</p>
@@ -779,11 +828,11 @@ Field is required if have required constraint without <code>false</code> value</
         </li>
         
         
-        <li id="section-39">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>Internal only.
 Sort constraints by priority DESC</p>
@@ -796,11 +845,11 @@ Sort constraints by priority DESC</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>Create array unique of priorities</p>
 
@@ -813,11 +862,11 @@ Sort constraints by priority DESC</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Sort them by priority DESC</p>
 

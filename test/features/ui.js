@@ -266,7 +266,7 @@ define(function () {
         expect(window.ParsleyUI.getErrorsMessages(parsleyInstance).length).to.be(2);
         expect(window.ParsleyUI.getErrorsMessages(parsleyInstance)[0]).to.be('This value is too short. It should have 5 characters or more.');
       });
-      it('should not have errors ul created for excluded fields', function () {
+      it.skip('should not have errors ul created for excluded fields', function () {
         $('body').append('<input type="hidden" id="element" value="foo" data-parsley-minlength="5" />');
         var parsleyInstance = $('#element').parsley();
         expect($('body ul').length).to.be(0);
