@@ -1,5 +1,3 @@
-## Oups, http://parsleyjs.org is down, please use http://guillaumepotier.github.io/Parsley.js/ for now.
-
 # Parsley
 
 [![Build Status](https://travis-ci.org/guillaumepotier/Parsley.js.svg?branch=master)](https://travis-ci.org/guillaumepotier/Parsley.js)
