@@ -21,6 +21,9 @@
     "email": "guillaume@wisembly.com",
     "url": "http://guillaumepotier.com/"
   },
+  "dependencies": {
+    "jquery": ">1.8"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "mocha": "*",
