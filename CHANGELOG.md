@@ -1,5 +1,10 @@
 # Parsley 2.x changelog
 
+## 2.2.0-rc5
+- Calls to validate, isValid, whenValidate, whenValid use named arguments
+  (e.g. validate({force: true, group: 'foo'})). Previous API is supported for
+  isValid/validate but is deprecated.
+
 ## 2.2.0-rc3
 
 - Merged both versions (remote and basic) of Parsley.
