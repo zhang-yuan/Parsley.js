@@ -40,8 +40,8 @@ ParsleyUI.prototype = {
     this.actualizeTriggers(fieldInstance);
 
     // If field is not valid for the first time, bind keyup trigger to ease UX and quickly inform user
-    if ((diff.kept.length || diff.added.length) && true !== fieldInstance._ui.failedOnce)
-      this.manageFailingFieldTrigger(fieldInstance);
+    if ((diff.kept.length || diff.added.length) && true !== fieldInstance._ui.revalidateOnInput)
+      this.revalidateOnInput(fieldInstance);
   },
 
   // Returns an array of field's error message(s)
@@ -322,16 +322,16 @@ ParsleyUI.prototype = {
     field.validate();
   },
 
-  manageFailingFieldTrigger: function (fieldInstance) {
-    fieldInstance._ui.failedOnce = true;
+  revalidateOnInput: function (fieldInstance) {
+    fieldInstance._ui.revalidateOnInput = true;
 
-    fieldInstance._findRelated().on('input.ParsleyFailedOnce', () => { fieldInstance.validate(); });
+    fieldInstance._findRelated().on('input.ParsleyRevalidate', () => { fieldInstance.validate(); });
   },
 
   reset: function (parsleyInstance) {
     // Reset all event listeners
     this.actualizeTriggers(parsleyInstance);
-    parsleyInstance.$element.off('.ParsleyFailedOnce');
+    parsleyInstance.$element.off('.ParsleyRevalidate');
 
     // Nothing to do if UI never initialized for this field
     if ('undefined' === typeof parsleyInstance._ui)
@@ -352,7 +352,7 @@ ParsleyUI.prototype = {
     // Reset validation flags and last validation result
     parsleyInstance._ui.lastValidationResult = [];
     parsleyInstance._ui.validationInformationVisible = false;
-    parsleyInstance._ui.failedOnce = false;
+    parsleyInstance._ui.revalidateOnInput = false;
   },
 
   destroy: function (parsleyInstance) {
