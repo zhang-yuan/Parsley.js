@@ -2,6 +2,8 @@
 
 ## master
 
+- Parsley now relies on `input` events instead of `change` and `keyup` events.
+
 ## 2.2.0
 
 - type="number" now follows HTML5 spec. In particular, commas are no longer accepted. (#1037)
