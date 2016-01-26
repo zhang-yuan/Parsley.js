@@ -39,6 +39,13 @@ var ParsleyDefaults = {
   // `$.Event()` that will trigger validation. eg: `keyup`, `change`...
   trigger: false,
 
+  // When should validation occur on input change:
+  // - init: when fields are inited even for empty required fields
+  // - with value: when fields are inited, except for empty required fields
+  // - input: after an initial input
+  // - fail: after an initial failure (default)
+  revalidateAfter: 'failed',
+
   // Class that would be added on every failing validation Parsley field
   errorClass: 'parsley-error',
 

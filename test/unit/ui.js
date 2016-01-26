@@ -204,6 +204,39 @@ describe('ParsleyUI', () => {
     $('#element').trigger($.Event('change'));
     expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').hasClass('parsley-type')).to.be(false);
   });
+  it('should auto bind error trigger immediately if revalidateAfter is "init"', () => {
+    $('body').append('<input type="email" id="element" required />');
+    var parsleyField = $('#element').parsley({revalidateAfter: 'init'});
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(1);
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').hasClass('parsley-required')).to.be(true);
+    $('#element').val('foo').trigger('input');
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(1);
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').hasClass('parsley-type')).to.be(true);
+  });
+  it('should auto bind error trigger immediately if revalidateAfter is "with value" and field has initial value', () => {
+    $('body').append('<input type="email" id="element" required value="bar" />');
+    var parsleyField = $('#element').parsley({revalidateAfter: 'with value'});
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(1);
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').hasClass('parsley-type')).to.be(true);
+    $('#element').val('foo@example.com').trigger('input');
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(0);
+  });
+  it('should auto bind error trigger on input if revalidateAfter is "with value" and field has no initial value', () => {
+    $('body').append('<input type="email" id="element" required />');
+    var parsleyField = $('#element').parsley({revalidateAfter: 'with value'});
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(0);
+    $('#element').val('foo').trigger('input');
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(1);
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').hasClass('parsley-type')).to.be(true);
+  });
+  it('should auto bind error trigger early if revalidateAfter is "input"', () => {
+    $('body').append('<input type="email" id="element" required value="bar" />');
+    var parsleyField = $('#element').parsley({revalidateAfter: 'input'});
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(0);
+    $('#element').val('foo').trigger('input');
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').length).to.be(1);
+    expect($('ul#parsley-id-' + parsleyField.__id__ + ' li').hasClass('parsley-type')).to.be(true);
+  });
   it('should handle complex triggers (keyup, keypress...)', () => {
     $('body').append('<input type="email" id="element" required data-parsley-trigger="keyup" />');
     var parsleyField = $('#element').psly();

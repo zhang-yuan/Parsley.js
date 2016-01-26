@@ -243,6 +243,19 @@ ParsleyUI.prototype = {
 
     // Bind triggers first time
     this.actualizeTriggers(fieldInstance);
+
+    if (!/^(init|with value|input|failed)/.test(fieldInstance.options.revalidateAfter) ) {
+      ParsleyUtils.warnOnce(`Invalid value for 'revalidateAfter': "${fieldInstance.options.revalidateAfter}"`);
+    }
+
+    if ('failed' !== fieldInstance.options.revalidateAfter) {
+      this.revalidateOnInput(fieldInstance);
+      if ('input' !== fieldInstance.options.revalidateAfter) {
+        if ('with value' !== fieldInstance.options.revalidateAfter || fieldInstance.getValue()) {
+          fieldInstance.validate();
+        }
+      }
+    }
   },
 
   // Determine which element will have `parsley-error` and `parsley-success` classes
