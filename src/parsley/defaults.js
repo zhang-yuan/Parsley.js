@@ -57,10 +57,10 @@ var ParsleyDefaults = {
   errorsContainer: function (ParsleyField) {},
 
   // ul elem that would receive errors' list
-  errorsWrapper: '<ul class="parsley-errors-list"></ul>',
+  errorsWrapper: '<i class="parsley-errors-list"></i>',
 
   // li elem that would receive error message
-  errorTemplate: '<li></li>'
+  errorTemplate: '<i></i>'
 };
 
 export default ParsleyDefaults;

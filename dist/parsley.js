@@ -1,6 +1,6 @@
 /*!
 * Parsley.js
-* Version 2.4.3 - built Sat, Jun 18th 2016, 9:01 pm
+* Version 2.4.3 - built Fri, Aug 5th 2016, 10:52 am
 * http://parsleyjs.org
 * Guillaume Potier - <guillaume@wisembly.com>
 * Marc-Andre Lafortune - <petroselinum@marc-andre.ca>
@@ -15,8 +15,8 @@ var _slice = Array.prototype.slice;
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('jquery')) : typeof define === 'function' && define.amd ? define(['jquery'], factory) : global.parsley = factory(global.jQuery);
-})(this, function ($) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('jquery'), require('qtip2')) : typeof define === 'function' && define.amd ? define(['jquery', 'qtip2'], factory) : global.parsley = factory(global.jQuery, global.qtip);
+})(this, function ($, qtip) {
   'use strict';
 
   var globalID = 1;
@@ -211,10 +211,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     errorsContainer: function errorsContainer(ParsleyField) {},
 
     // ul elem that would receive errors' list
-    errorsWrapper: '<ul class="parsley-errors-list"></ul>',
+    errorsWrapper: '<i class="parsley-errors-list"></i>',
 
     // li elem that would receive error message
-    errorTemplate: '<li></li>'
+    errorTemplate: '<i></i>'
   };
 
   var ParsleyAbstract = function ParsleyAbstract() {
@@ -812,6 +812,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
   var ParsleyUI = {};
 
+  /*custom*/
+  var qtipSetting = {
+    show: {
+      solo: true,
+      hide: 'unfocus'
+    },
+    position: {
+      my: 'left center',
+      at: 'right center'
+    }
+  };
+
   var diffResults = function diffResults(newResult, oldResult, deep) {
     var added = [];
     var kept = [];
@@ -976,9 +988,21 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         if (diff.added.length || diff.kept.length) {
           this._insertErrorWrapper();
 
-          if (0 === this._ui.$errorsWrapper.find('.parsley-custom-error-message').length) this._ui.$errorsWrapper.append($(this.options.errorTemplate).addClass('parsley-custom-error-message'));
+          if (0 === this._ui.$errorsWrapper.find('.parsley-custom-error-message').length)
+            // this._ui.$errorsWrapper
+            //   .append(
+            //     $(this.options.errorTemplate)
+            //     .addClass('parsley-custom-error-message')
+            //   );
+            this.$element.attr('title', this.options.errorMessage).qtip(qtipSetting);
 
           return this._ui.$errorsWrapper.addClass('filled').find('.parsley-custom-error-message').html(this.options.errorMessage);
+        }
+
+        // remove title
+        var qtapi = this.$element.qtip('api');
+        if (qtapi) {
+          qtapi.destroy().removeAttr('title');
         }
 
         return this._ui.$errorsWrapper.removeClass('filled').find('.parsley-custom-error-message').remove();
@@ -997,7 +1021,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var assert = _ref5.assert;
 
       this._insertErrorWrapper();
-      this._ui.$errorsWrapper.addClass('filled').append($(this.options.errorTemplate).addClass('parsley-' + name).html(message || this._getErrorMessage(assert)));
+      // this._ui.$errorsWrapper
+      //   .addClass('filled')
+      //   .append(
+      //     $(this.options.errorTemplate)
+      //     .addClass('parsley-' + name)
+      //     .html(message || this._getErrorMessage(assert))
+      //   );
+      // use qtip instead of errorTemplate
+      this.$element.attr('title', message || this._getErrorMessage(assert)).qtip(qtipSetting);
     },
 
     _updateError: function _updateError(name, _ref6) {
@@ -1009,6 +1041,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
     _removeError: function _removeError(name) {
       this._ui.$errorsWrapper.removeClass('filled').find('.parsley-' + name).remove();
+
+      // remove title
+      var qtapi = this.$element.qtip('api');
+      if (qtapi) {
+        qtapi.destroy().removeAttr('title');
+      }
     },
 
     _getErrorMessage: function _getErrorMessage(constraint) {

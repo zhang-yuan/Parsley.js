@@ -1,7 +1,20 @@
 import $ from 'jquery';
+import qtip from 'qtip2'
 import ParsleyUtils from './utils';
 
 var ParsleyUI = {};
+
+/*custom*/
+var qtipSetting = {
+    show : {
+        solo : true,
+        hide : 'unfocus'
+    },
+    position : {
+        my : 'left center',
+        at : 'right center'
+    }
+};
 
 var diffResults = function (newResult, oldResult, deep) {
   var added = [];
@@ -164,16 +177,25 @@ ParsleyUI.Field = {
         this._insertErrorWrapper();
 
         if (0 === this._ui.$errorsWrapper.find('.parsley-custom-error-message').length)
-          this._ui.$errorsWrapper
-            .append(
-              $(this.options.errorTemplate)
-              .addClass('parsley-custom-error-message')
-            );
+          // this._ui.$errorsWrapper
+          //   .append(
+          //     $(this.options.errorTemplate)
+          //     .addClass('parsley-custom-error-message')
+          //   );
+          this.$element
+            .attr('title', this.options.errorMessage)
+            .qtip(qtipSetting);
 
         return this._ui.$errorsWrapper
           .addClass('filled')
           .find('.parsley-custom-error-message')
           .html(this.options.errorMessage);
+      }
+
+      // remove title
+      var qtapi = this.$element.qtip('api');
+      if (qtapi) {
+        qtapi.destroy().removeAttr('title');
       }
 
       return this._ui.$errorsWrapper
@@ -196,13 +218,17 @@ ParsleyUI.Field = {
 
   _addError: function (name, {message, assert}) {
     this._insertErrorWrapper();
-    this._ui.$errorsWrapper
-      .addClass('filled')
-      .append(
-        $(this.options.errorTemplate)
-        .addClass('parsley-' + name)
-        .html(message || this._getErrorMessage(assert))
-      );
+    // this._ui.$errorsWrapper
+    //   .addClass('filled')
+    //   .append(
+    //     $(this.options.errorTemplate)
+    //     .addClass('parsley-' + name)
+    //     .html(message || this._getErrorMessage(assert))
+    //   );
+     // use qtip instead of errorTemplate
+    this.$element
+      .attr('title', (message || this._getErrorMessage(assert)))
+      .qtip(qtipSetting);
   },
 
   _updateError: function (name, {message, assert}) {
@@ -217,6 +243,12 @@ ParsleyUI.Field = {
       .removeClass('filled')
       .find('.parsley-' + name)
       .remove();
+
+    // remove title
+      var qtapi = this.$element.qtip('api');
+      if (qtapi) {
+        qtapi.destroy().removeAttr('title');
+      }
   },
 
   _getErrorMessage: function (constraint) {

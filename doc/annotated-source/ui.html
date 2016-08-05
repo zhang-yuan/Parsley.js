@@ -107,9 +107,22 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> $ <span class="hljs-keyword">from</span> <span class="hljs-string">'jquery'</span>;
+<span class="hljs-keyword">import</span> qtip <span class="hljs-keyword">from</span> <span class="hljs-string">'qtip2'</span>
 <span class="hljs-keyword">import</span> ParsleyUtils <span class="hljs-keyword">from</span> <span class="hljs-string">'./utils'</span>;
 
 <span class="hljs-keyword">var</span> ParsleyUI = {};
+
+<span class="hljs-comment">/*custom*/</span>
+<span class="hljs-keyword">var</span> qtipSetting = {
+    show : {
+        solo : <span class="hljs-literal">true</span>,
+        hide : <span class="hljs-string">'unfocus'</span>
+    },
+    position : {
+        my : <span class="hljs-string">'left center'</span>,
+        at : <span class="hljs-string">'right center'</span>
+    }
+};
 
 <span class="hljs-keyword">var</span> diffResults = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">newResult, oldResult, deep</span>) </span>{
   <span class="hljs-keyword">var</span> added = [];
@@ -465,17 +478,51 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
       <span class="hljs-keyword">if</span> ((diff.added.length || diff.kept.length)) {
         <span class="hljs-keyword">this</span>._insertErrorWrapper();
 
-        <span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> === <span class="hljs-keyword">this</span>._ui.$errorsWrapper.find(<span class="hljs-string">'.parsley-custom-error-message'</span>).length)
-          <span class="hljs-keyword">this</span>._ui.$errorsWrapper
-            .append(
-              $(<span class="hljs-keyword">this</span>.options.errorTemplate)
-              .addClass(<span class="hljs-string">'parsley-custom-error-message'</span>)
-            );
+        <span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> === <span class="hljs-keyword">this</span>._ui.$errorsWrapper.find(<span class="hljs-string">'.parsley-custom-error-message'</span>).length)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>this._ui.$errorsWrapper
+  .append(
+    $(this.options.errorTemplate)
+    .addClass(‘parsley-custom-error-message’)
+  );</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">this</span>.$element
+            .attr(<span class="hljs-string">'title'</span>, <span class="hljs-keyword">this</span>.options.errorMessage)
+            .qtip(qtipSetting);
 
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._ui.$errorsWrapper
           .addClass(<span class="hljs-string">'filled'</span>)
           .find(<span class="hljs-string">'.parsley-custom-error-message'</span>)
           .html(<span class="hljs-keyword">this</span>.options.errorMessage);
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>remove title</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> qtapi = <span class="hljs-keyword">this</span>.$element.qtip(<span class="hljs-string">'api'</span>);
+      <span class="hljs-keyword">if</span> (qtapi) {
+        qtapi.destroy().removeAttr(<span class="hljs-string">'title'</span>);
       }
 
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._ui.$errorsWrapper
@@ -487,11 +534,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-18">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Show, hide, update failing constraints messages</p>
 
@@ -509,14 +556,31 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
 
 
   _addError: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, {message, assert}</span>) </span>{
-    <span class="hljs-keyword">this</span>._insertErrorWrapper();
-    <span class="hljs-keyword">this</span>._ui.$errorsWrapper
-      .addClass(<span class="hljs-string">'filled'</span>)
-      .append(
-        $(<span class="hljs-keyword">this</span>.options.errorTemplate)
-        .addClass(<span class="hljs-string">'parsley-'</span> + name)
-        .html(message || <span class="hljs-keyword">this</span>._getErrorMessage(assert))
-      );
+    <span class="hljs-keyword">this</span>._insertErrorWrapper();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>this._ui.$errorsWrapper
+  .addClass(‘filled’)
+  .append(
+    $(this.options.errorTemplate)
+    .addClass(‘parsley-‘ + name)
+    .html(message || this._getErrorMessage(assert))
+  );
+use qtip instead of errorTemplate</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">this</span>.$element
+      .attr(<span class="hljs-string">'title'</span>, (message || <span class="hljs-keyword">this</span>._getErrorMessage(assert)))
+      .qtip(qtipSetting);
   },
 
   _updateError: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name, {message, assert}</span>) </span>{
@@ -530,7 +594,25 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
     <span class="hljs-keyword">this</span>._ui.$errorsWrapper
       .removeClass(<span class="hljs-string">'filled'</span>)
       .find(<span class="hljs-string">'.parsley-'</span> + name)
-      .remove();
+      .remove();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>remove title</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> qtapi = <span class="hljs-keyword">this</span>.$element.qtip(<span class="hljs-string">'api'</span>);
+      <span class="hljs-keyword">if</span> (qtapi) {
+        qtapi.destroy().removeAttr(<span class="hljs-string">'title'</span>);
+      }
   },
 
   _getErrorMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">constraint</span>) </span>{
@@ -547,11 +629,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-19">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>UI could be already built or disabled</p>
 
@@ -565,11 +647,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-20">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Give field its Parsley id in DOM</p>
 
@@ -582,11 +664,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-21">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>$errorClassHandler is the $element that woul have parsley-error and parsley-success classes</p>
 
@@ -597,11 +679,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-22">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>$errorsWrapper is a div that would contain the various field errors, it will be appended into $errorsContainer</p>
 
@@ -613,11 +695,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-23">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>ValidationResult UI storage to detect what have changed bwt two validations, and update DOM accordingly</p>
 
@@ -629,11 +711,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-24">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Store it in this for later</p>
 
@@ -645,11 +727,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-25">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Determine which element will have <code>parsley-error</code> and <code>parsley-success</code> classes</p>
 
@@ -660,11 +742,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-26">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>An element selector could be passed through DOM with <code>data-parsley-class-handler=#foo</code></p>
 
@@ -676,11 +758,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-27">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Class handled could also be determined by function given in Parsley options</p>
 
@@ -691,11 +773,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-28">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>If this function returned a valid existing DOM element, go for it</p>
 
@@ -707,11 +789,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-29">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Otherwise, if simple element (input, texatrea, select…) it will perfectly host the classes</p>
 
@@ -723,11 +805,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-30">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>But if multiple element (radio, checkbox), that would be their parent</p>
 
@@ -742,11 +824,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-31">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Nothing to do if already inserted</p>
 
@@ -779,11 +861,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-32">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>Remove Parsley events already bound on this field</p>
 
@@ -806,11 +888,11 @@ but highly improbable cuz’ manually removing a well Parsley handled error make
         </li>
         
         
-        <li id="section-33">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>For keyup, keypress, keydown, input… events that could be a little bit obstrusive
 do not validate if val length &lt; min threshold on first validation. Once field have been validated once and info
@@ -830,11 +912,11 @@ about success or failure have been displayed, always validate with this trigger 
         </li>
         
         
-        <li id="section-34">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Reset all event listeners</p>
 
@@ -846,11 +928,11 @@ about success or failure have been displayed, always validate with this trigger 
         </li>
         
         
-        <li id="section-35">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Nothing to do if UI never initialized for this field</p>
 
@@ -862,11 +944,11 @@ about success or failure have been displayed, always validate with this trigger 
         </li>
         
         
-        <li id="section-36">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Reset all errors’ li</p>
 
@@ -880,11 +962,11 @@ about success or failure have been displayed, always validate with this trigger 
         </li>
         
         
-        <li id="section-37">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Reset validation class</p>
 
@@ -895,11 +977,11 @@ about success or failure have been displayed, always validate with this trigger 
         </li>
         
         
-        <li id="section-38">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>Reset validation flags and last validation result</p>
 
